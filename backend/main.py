@@ -1,7 +1,9 @@
-from flask import Flask, jsonify
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 from flask_restful import Api
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 @app.route("/")
@@ -14,5 +16,13 @@ def get_data():
 
     return jsonify({"message": test_message})
 
+@app.route("/test", methods=['GET'])
+def test():
+    data = request.get_json
+    return jsonify({
+        "message": "Backend received data!",
+        "data": data
+    })
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=8000, debug=True)
