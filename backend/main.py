@@ -16,9 +16,9 @@ def get_data():
 
     return jsonify({"message": test_message})
 
-@app.route("/test", methods=['GET'])
+@app.route("/test", methods=['POST'])
 def test():
-    data = request.get_json
+    data = request.get_json()
     return jsonify({
         "message": "Backend received data!",
         "data": data
